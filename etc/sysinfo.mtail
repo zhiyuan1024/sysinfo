@@ -1,0 +1,12 @@
+gauge sysinfo_cpu_usage by category
+
+/cpu: (?P<timestamp>[0-9]+) (?P<user>[0-9]+) (?P<system>[0-9]+) (?P<nice>[0-9]+) (?P<idel>[0-9]+) (?P<iow>[0-9]+) (?P<hi>[0-9]+) (?P<si>[0-9]+)/{
+	strptime($timestamp, "20060102150405")
+	sysinfo_cpu_usage["user"]=$user
+	sysinfo_cpu_usage["system"]=$system
+	sysinfo_cpu_usage["nice"]=$nice
+	sysinfo_cpu_usage["idel"]=$idel
+	sysinfo_cpu_usage["iowait"]=$iow
+	sysinfo_cpu_usage["hardirq"]=$hi
+	sysinfo_cpu_usage["softirq"]=$si
+}
